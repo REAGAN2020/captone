@@ -50,3 +50,19 @@ class Car(models.Model):
     
     
    
+class Services(models.Model):
+    image = CloudinaryField('image', null=True)
+    description = TextField()
+    name =models.CharField(max_length=100)
+    prices=models.IntegerField()
+    
+    def __unicode__(self):
+        return self.name
+
+    def __str__(self):
+        return self.name
+    
+    def average_rating(self):
+        all_ratings = map(lambda x: x.ratings, self.review_set.all())
+        return np.mean(all_ratings)
+          
