@@ -117,3 +117,33 @@ class Review(models.Model):
         all_ratings = map(lambda x: x.ratings, self.review_set.all())
         return np.mean(all_ratings)
           
+class Post(models.Model):
+    title = models.CharField(max_length=150)
+    image = CloudinaryField('image', null=True)
+    post = TextField()
+    username = models.ForeignKey(User,on_delete=models.CASCADE)
+    post_date = models.DateTimeField(auto_now_add=True)
+    avatar = CloudinaryField('image', null=True)
+
+    def __str__(self):
+        return f'{self.user.username} Profile'
+
+    def save_profile(self):
+        self.user
+
+    def delete_profile(self):
+        self.delete()
+
+    @classmethod
+    def search_profile(cls, name):
+        return cls.objects.filter(user__username__icontains=name).all()
+
+    
+        (5, '5'),
+    )
+
+    service = models.ForeignKey(Services, on_delete=models.CASCADE)
+    pub_date = models.DateTimeField('date published')
+    username = models.CharField(max_length=100)
+    comment = models.CharField(max_length=200)
+    rating = models.IntegerField(choices=RATING_CHOICES)
