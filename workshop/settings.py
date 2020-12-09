@@ -37,6 +37,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'gari.apps.GariConfig',
+    'tinymce',
+    'cloudinary',
+    'rest_framework',
+    'knox',
+    'django_rest_passwordreset',
+    'corsheaders',
+    'rest_framework.authtoken',
+    'sendgrid',
+    # 'rest_framework_jwt',
+    'drf_yasg',
+    
 ]
 
 MIDDLEWARE = [
@@ -98,6 +110,18 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'knox.auth.TokenAuthentication',
+        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
 
 
 # Internationalization
