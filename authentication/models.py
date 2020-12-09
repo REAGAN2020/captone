@@ -8,4 +8,6 @@ class User(AbstractUser):
         ('NU', 'NORMAL USER'),
         ('V', 'VENDOR')
     )
-  
+    role = models.CharField(
+        verbose_name='user role', max_length=2, choices=USER_ROLES,default='NU'
+    )
